@@ -212,6 +212,10 @@ $("app").oninput=function(e){var f=e.target.dataset.f;if(!f)return;
 $("app").onchange=function(e){if(e.target.id=="imp"&&e.target.files[0])importData(e.target.files[0])};
 $("app").onkeydown=function(e){if(e.key=="Enter"&&e.target.id=="newex")e.target.nextElementSibling.click();if(e.key=="Enter"&&e.target.id=="rn")e.target.nextElementSibling.click()};
 load();render();
-if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(function(){});
+if("serviceWorker" in navigator){
+ // when a new version takes over, reload once so you see it straight away (your logs are saved as you type)
+ var hadSW=!!navigator.serviceWorker.controller,reloaded=false;
+ navigator.serviceWorker.addEventListener("controllerchange",function(){if(hadSW&&!reloaded){reloaded=true;location.reload()}});
+ navigator.serviceWorker.register("sw.js").catch(function(){})}
 </script>
 </body></html>
