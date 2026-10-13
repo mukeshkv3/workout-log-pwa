@@ -3,6 +3,10 @@
 Offline-first workout logger (PWA). Pick a workout, then log weight and reps per set.
 No build step, no server, no dependencies. Data stays in the browser (`localStorage`).
 
+## Members
+Each member picks who they are on first open and then sees only their own workouts, today's plan and history on this phone. Plans live at the top of `index.html` (`PEOPLE`); edit there when the gym changes a plan. This keeps views separate; it is not a lock.
+Back up and Restore apply to the member who is selected, and a backup only restores into the same member.
+
 ## Files
 - `index.html` – the whole app
 - `sw.js` – offline cache (bump `CACHE` when `index.html` changes)
